@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ByMelty — fondue mug with a candle underneath. Light it, melt the chocolate, enjoy.">
+  <title>ByMelty — Fondue mug</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Analytics: replace YOUR_DOMAIN with your production domain -->
+  <script defer data-domain="YOUR_DOMAIN" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="#" aria-label="ByMelty — home">
+        <img class="brand__logo" src="assets/logo.png" width="200" height="64" alt="ByMelty">
+      </a>
+      <div class="site-header__actions">
+        <nav class="nav" aria-label="Primary">
+          <a class="nav__link" href="#how-it-works">How it works</a>
+          <a class="nav__link" href="#faq">FAQ</a>
+        </nav>
+        <a
+          class="btn btn--primary btn--header-buy"
+          href="#buy"
+          data-stripe-payment-link
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="header-buy"
+        >
+          Buy now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">One product, one ritual</p>
+          <h1 class="hero__title">Chocolate melted just right</h1>
+          <p class="hero__lead">
+            The ByMelty fondue mug is for anyone who loves a sweet pause: light the candle underneath,
+            let the chocolate melt gently, and dip whatever you like.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#buy" data-track="hero-cta">Get mine</a>
+            <a class="btn btn--ghost" href="#how-it-works">See how it works</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <figure class="hero__frame">
+            <img
+              src="assets/mug-lifestyle.png"
+              width="800"
+              height="600"
+              alt="Three ByMelty fondue mugs in brown, white, and red with tea lights, melted chocolate, fruit, and churros on a wooden table."
+              fetchpriority="high"
+            >
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--cream" id="story">
+      <div class="section__inner story__grid">
+        <div class="story__copy">
+          <h2 class="section__title">Made to melt</h2>
+          <p class="section__text">
+            Inspired by simple fondue, the mug pairs ceramic shaped for candle heat with a space for chocolate.
+            No fuss: light the candle, wait for it to melt, and serve. Brown, beige, and the white of chocolate
+            shape the brand — warm, straightforward, and indulgent.
+          </p>
+        </div>
+        <figure class="story__figure">
+          <img
+            src="assets/mug-product.png"
+            width="800"
+            height="1000"
+            loading="lazy"
+            alt="ByMelty fondue mug in red with tea light below, melted chocolate, and matching fondue fork in the handle slot."
+          >
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="section__inner">
+        <h2 class="section__title section__title--center">How it works</h2>
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num" aria-hidden="true">1</span>
+            <h3 class="step__title">Candle underneath</h3>
+            <p class="step__text">Place the candle in the holder below the mug. Heat rises evenly.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">2</span>
+            <h3 class="step__title">Chocolate melts</h3>
+            <p class="step__text">The chocolate turns liquid — perfect for fruit, biscuits, or whatever you prefer.</p>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">3</span>
+            <h3 class="step__title">Serve and repeat</h3>
+            <p class="step__text">Adjust the candle to hold the temperature. A sweet moment for you or to share.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="buy">
+      <div class="section__inner narrow">
+        <h2 class="section__title section__title--light">Get your ByMelty</h2>
+        <p class="section__text section__text--light">
+          Secure checkout powered by Stripe. After purchase, you will receive a confirmation email.
+        </p>
+        <div class="purchase">
+          <a
+            class="btn btn--primary btn--large"
+            href="#buy"
+            data-stripe-payment-link
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="stripe-checkout"
+          >
+            Buy now
+          </a>
+          <p class="purchase__hint" id="stripe-hint" hidden>
+            Add your Stripe Payment Link in <code>stripe-config.js</code> to enable checkout.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--cream" id="faq">
+      <div class="section__inner narrow">
+        <h2 class="section__title">Frequently asked questions</h2>
+        <dl class="faq">
+          <div class="faq__item">
+            <dt class="faq__q">Is chocolate included?</dt>
+            <dd class="faq__a">Update this to match your offer and the kit you ship.</dd>
+          </div>
+          <div class="faq__item">
+            <dt class="faq__q">Is it safe to use a candle?</dt>
+            <dd class="faq__a">Use candles suitable for fondue sets and follow the safety instructions included with the product.</dd>
+          </div>
+          <div class="faq__item">
+            <dt class="faq__q">Where do you ship?</dt>
+            <dd class="faq__a">Update this with your regions, timelines, and shipping policy.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <img class="site-footer__logo" src="assets/logo.png" width="160" height="51" alt="">
+      <p class="site-footer__copy">&copy; <span id="year"></span> ByMelty. All rights reserved.</p>
+      <p class="site-footer__contact">Contact: <a href="mailto:hello@bymelty.com">hello@bymelty.com</a></p>
+    </div>
+  </footer>
+
+  <script src="stripe-config.js"></script>
+  <script src="main.js" defer></script>
+</body>
+</html>
