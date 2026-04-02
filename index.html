@@ -23,11 +23,10 @@
       <div class="site-header__actions">
         <nav class="nav" aria-label="Primary">
           <a class="nav__link" href="#how-it-works">How it works</a>
-          <a class="nav__link" href="#faq">FAQ</a>
         </nav>
         <a
           class="btn btn--primary btn--header-buy"
-          href="#buy"
+          href="#product"
           data-stripe-payment-link
           target="_blank"
           rel="noopener noreferrer"
@@ -49,7 +48,12 @@
       <div class="particle-hero__body">
         <p class="particle-hero__sub">The fondue mug with a candle. Light it. Melt it. Dip in.</p>
         <div class="particle-hero__actions">
-          <a class="btn btn--gold btn--large" href="#buy" data-track="particle-cta">
+          <a class="btn btn--gold btn--large"
+             href="#product"
+             data-stripe-payment-link
+             target="_blank"
+             rel="noopener noreferrer"
+             data-track="particle-cta">
             Treat yourself — buy now
           </a>
           <a class="btn btn--ghost-light" href="#how-it-works">How it works</a>
@@ -74,7 +78,12 @@
             or churros. A sweet moment for yourself — or to share.
           </p>
           <div class="diced-hero__btn-wrap dh-anim dh-anim--d4">
-            <a class="chronicle-btn" href="#buy" data-track="diced-cta">
+            <a class="chronicle-btn"
+               href="#product"
+               data-stripe-payment-link
+               target="_blank"
+               rel="noopener noreferrer"
+               data-track="diced-cta">
               <span><em>Get yours</em></span>
               <span aria-hidden="true"><em>Get yours</em></span>
             </a>
@@ -121,7 +130,7 @@
       </div>
     </section>
 
-    <section class="section" id="how-it-works">
+    <section class="section section--choc-cream" id="how-it-works">
       <div class="section__inner">
         <h2 class="section__title section__title--center">How it works</h2>
         <ol class="steps">
@@ -144,49 +153,6 @@
       </div>
     </section>
 
-    <section class="section section--dark" id="buy">
-      <div class="section__inner narrow">
-        <h2 class="section__title section__title--light">Get your ByMelty</h2>
-        <p class="section__text section__text--light">
-          Secure checkout powered by Stripe. After purchase, you will receive a confirmation email.
-        </p>
-        <div class="purchase">
-          <a
-            class="btn btn--primary btn--large"
-            href="#buy"
-            data-stripe-payment-link
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="stripe-checkout"
-          >
-            Buy now
-          </a>
-          <p class="purchase__hint" id="stripe-hint" hidden>
-            Add your Stripe Payment Link in <code>stripe-config.js</code> to enable checkout.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--cream" id="faq">
-      <div class="section__inner narrow">
-        <h2 class="section__title">Frequently asked questions</h2>
-        <dl class="faq">
-          <div class="faq__item">
-            <dt class="faq__q">Is chocolate included?</dt>
-            <dd class="faq__a">Update this to match your offer and the kit you ship.</dd>
-          </div>
-          <div class="faq__item">
-            <dt class="faq__q">Is it safe to use a candle?</dt>
-            <dd class="faq__a">Use candles suitable for fondue sets and follow the safety instructions included with the product.</dd>
-          </div>
-          <div class="faq__item">
-            <dt class="faq__q">Where do you ship?</dt>
-            <dd class="faq__a">Update this with your regions, timelines, and shipping policy.</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">

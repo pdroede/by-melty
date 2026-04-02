@@ -82,9 +82,9 @@ a:focus-visible,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(250, 247, 242, 0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--cream-300);
+  background: rgba(31, 21, 16, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74, 56, 44, 0.4);
 }
 
 .site-header__inner {
@@ -108,11 +108,15 @@ a:focus-visible,
 .btn--header-buy {
   padding: 0.75rem 1.75rem;
   font-size: 1.0625rem;
-  box-shadow: 0 4px 14px rgba(45, 33, 25, 0.2);
+  background: var(--gold);
+  color: var(--chocolate-900);
+  box-shadow: 0 4px 14px rgba(202, 138, 4, 0.25);
 }
 
 .btn--header-buy:hover {
-  box-shadow: 0 6px 18px rgba(45, 33, 25, 0.28);
+  background: var(--gold-hover);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(202, 138, 4, 0.4);
 }
 
 @media (max-width: 640px) {
@@ -153,11 +157,12 @@ a:focus-visible,
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--chocolate-700);
+  color: var(--cream-200);
 }
 
 .nav__link:hover {
-  text-decoration: underline;
+  color: var(--gold);
+  text-decoration: none;
 }
 
 /* ---------- Particle Hero ---------- */
@@ -197,7 +202,7 @@ a:focus-visible,
   align-items: center;
   gap: 1.25rem;
   padding: 1.75rem var(--space) 2.5rem;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(10,6,4,0.96) 30%, #0a0604 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(31,21,16,0.97) 28%, var(--chocolate-900) 100%);
   margin-top: -4px; /* kill seam */
 }
 
@@ -268,7 +273,7 @@ a:focus-visible,
 /* ---------- Diced Hero ---------- */
 
 .diced-hero {
-  background: var(--cream-100);
+  background: var(--chocolate-800);
   padding: clamp(3rem, 7vw, 5rem) var(--space);
 }
 
@@ -295,7 +300,7 @@ a:focus-visible,
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--chocolate-600);
+  color: var(--gold);
   margin-bottom: 0.75rem;
 }
 
@@ -305,7 +310,7 @@ a:focus-visible,
   font-weight: 400;
   line-height: 1.1;
   margin: 0;
-  background: linear-gradient(45deg, var(--gold), var(--chocolate-800));
+  background: linear-gradient(45deg, var(--gold), var(--cream-100));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -325,7 +330,7 @@ a:focus-visible,
 .diced-hero__sub {
   margin: 0 0 1.5rem;
   max-width: 38ch;
-  color: var(--chocolate-700);
+  color: var(--text-muted);
   line-height: 1.65;
   font-size: 1rem;
 }
@@ -350,8 +355,8 @@ a:focus-visible,
   font-size: 1rem;
   text-decoration: none;
   border-radius: 999px;
-  background: var(--chocolate-800);
-  color: var(--text-on-dark);
+  background: var(--gold);
+  color: var(--chocolate-900);
   transition: background 0.4s linear, color 0.4s linear;
   position: relative;
   min-width: 150px;
@@ -359,8 +364,8 @@ a:focus-visible,
 }
 
 .chronicle-btn:hover {
-  background: var(--gold);
-  color: #fff;
+  background: var(--cream-100);
+  color: var(--chocolate-900);
 }
 
 .chronicle-btn span {
@@ -722,6 +727,10 @@ a:focus-visible,
   background: var(--cream-200);
 }
 
+.section--choc-cream {
+  background: var(--cream-200);
+}
+
 .section--dark {
   background: linear-gradient(180deg, var(--chocolate-800) 0%, var(--chocolate-900) 100%);
   color: var(--text-on-dark);
@@ -780,11 +789,11 @@ a:focus-visible,
 }
 
 .step {
-  background: var(--white);
+  background: var(--cream-100);
   border-radius: var(--radius);
   padding: 1.5rem 1.25rem;
   border: 1px solid var(--cream-300);
-  box-shadow: 0 4px 20px rgba(45, 33, 25, 0.06);
+  box-shadow: 0 4px 20px rgba(45, 33, 25, 0.08);
 }
 
 .step__num {
@@ -793,8 +802,8 @@ a:focus-visible,
   height: 2rem;
   align-items: center;
   justify-content: center;
-  background: var(--chocolate-800);
-  color: var(--text-on-dark);
+  background: var(--gold);
+  color: var(--chocolate-900);
   font-weight: 700;
   font-size: 0.875rem;
   border-radius: 50%;
