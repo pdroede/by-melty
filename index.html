@@ -40,6 +40,23 @@
   </header>
 
   <main id="content">
+
+    <!-- Particle hero — attention-grabbing opener -->
+    <section class="particle-hero" aria-label="ByMelty animated text">
+      <canvas id="particle-canvas" aria-hidden="true"></canvas>
+      <!-- Reduced-motion / no-JS fallback -->
+      <p id="particle-fallback" class="particle-hero__fallback" hidden>BYMELTY</p>
+      <div class="particle-hero__body">
+        <p class="particle-hero__sub">The fondue mug with a candle. Light it. Melt it. Dip in.</p>
+        <div class="particle-hero__actions">
+          <a class="btn btn--gold btn--large" href="#buy" data-track="particle-cta">
+            Treat yourself — buy now
+          </a>
+          <a class="btn btn--ghost-light" href="#how-it-works">How it works</a>
+        </div>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="hero__inner">
         <div class="hero__copy">
@@ -168,5 +185,6 @@
 
   <script src="stripe-config.js"></script>
   <script src="main.js" defer></script>
+  <script src="particle-text.js" defer></script>
 </body>
 </html>
