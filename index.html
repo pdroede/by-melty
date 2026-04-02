@@ -57,53 +57,67 @@
       </div>
     </section>
 
-    <section class="hero">
-      <div class="hero__inner">
-        <div class="hero__copy">
-          <p class="eyebrow">One product, one ritual</p>
-          <h1 class="hero__title">Chocolate melted just right</h1>
-          <p class="hero__lead">
-            The ByMelty fondue mug is for anyone who loves a sweet pause: light the candle underneath,
-            let the chocolate melt gently, and dip whatever you like.
+    <!-- Diced hero — product presentation with warped image grid -->
+    <section class="diced-hero" id="product">
+      <div class="diced-hero__inner">
+
+        <!-- Left: copy -->
+        <div class="diced-hero__copy">
+          <span class="diced-hero__top dh-anim">One ritual, endless pleasure</span>
+          <h1 class="diced-hero__title dh-anim dh-anim--d1">
+            Melt. Dip.<br>Enjoy.
+          </h1>
+          <hr class="diced-hero__sep" aria-hidden="true">
+          <p class="diced-hero__sub dh-anim dh-anim--d3">
+            The ByMelty fondue mug is a ceramic cup on a candle holder.
+            Light it, let the chocolate melt gently, then dip fruit, biscuits,
+            or churros. A sweet moment for yourself — or to share.
           </p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="#buy" data-track="hero-cta">Get mine</a>
-            <a class="btn btn--ghost" href="#how-it-works">See how it works</a>
+          <div class="diced-hero__btn-wrap dh-anim dh-anim--d4">
+            <a class="chronicle-btn" href="#buy" data-track="diced-cta">
+              <span><em>Get yours</em></span>
+              <span aria-hidden="true"><em>Get yours</em></span>
+            </a>
           </div>
         </div>
-        <div class="hero__visual">
-          <figure class="hero__frame">
-            <img
-              src="assets/mug-lifestyle.png"
-              width="800"
-              height="600"
-              alt="Three ByMelty fondue mugs in brown, white, and red with tea lights, melted chocolate, fruit, and churros on a wooden table."
-              fetchpriority="high"
-            >
-          </figure>
-        </div>
-      </div>
-    </section>
 
-    <section class="section section--cream" id="story">
-      <div class="section__inner story__grid">
-        <div class="story__copy">
-          <h2 class="section__title">Made to melt</h2>
-          <p class="section__text">
-            Inspired by simple fondue, the mug pairs ceramic shaped for candle heat with a space for chocolate.
-            No fuss: light the candle, wait for it to melt, and serve. Brown, beige, and the white of chocolate
-            shape the brand — warm, straightforward, and indulgent.
-          </p>
+        <!-- Right: 2×2 warped image grid -->
+        <!-- DOM order is reversed (slides[3..0]) so inner corners are cut -->
+        <div class="diced-hero__grid">
+          <div class="diced-cell">
+            <img
+              class="diced-img diced-img--br"
+              src="assets/mug-lifestyle.png"
+              loading="lazy"
+              alt="Three ByMelty fondue mugs with tea lights and melted chocolate on a wooden table"
+            >
+          </div>
+          <div class="diced-cell">
+            <img
+              class="diced-img diced-img--bl"
+              src="assets/mug-product.png"
+              loading="lazy"
+              alt="ByMelty fondue mug in red with candle and fondue fork"
+            >
+          </div>
+          <div class="diced-cell">
+            <img
+              class="diced-img diced-img--tr"
+              src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=800&q=80"
+              loading="lazy"
+              alt="Dark chocolate pieces"
+            >
+          </div>
+          <div class="diced-cell">
+            <img
+              class="diced-img diced-img--tl"
+              src="https://images.unsplash.com/photo-1511381939415-e44571b5f48c?w=800&q=80"
+              loading="lazy"
+              alt="Chocolate fondue with dipping"
+            >
+          </div>
         </div>
-        <figure class="story__figure">
-          <img
-            src="assets/mug-product.png"
-            width="800"
-            height="1000"
-            loading="lazy"
-            alt="ByMelty fondue mug in red with tea light below, melted chocolate, and matching fondue fork in the handle slot."
-          >
-        </figure>
+
       </div>
     </section>
 

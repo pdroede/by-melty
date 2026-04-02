@@ -38,6 +38,24 @@ function applyStripePaymentLink() {
 
 applyStripePaymentLink();
 
+/** Trigger .is-visible on sections with entrance animations */
+(function () {
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll(".diced-hero").forEach(function (el) {
+    observer.observe(el);
+  });
+})();
+
 /** Plausible: goal "CTA Click" with props.location */
 function trackClick(location) {
   if (typeof window.plausible === "function") {
