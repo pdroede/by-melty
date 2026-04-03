@@ -1,12 +1,14 @@
 name: Deploy to GitHub Pages
 
-# Builds the Vite app and pushes only ./dist to the gh-pages branch.
-# In repo Settings → Pages, set Source to "Deploy from branch", Branch: gh-pages, Folder: / (root).
-# Do NOT use main/(root) — that serves source index.html with /src/main.tsx (blank page).
+# Builds Vite and pushes ./dist into ./docs on main (JamesIves).
+# In Settings → Pages: Source "Deploy from branch", Branch main, Folder /docs (not /root).
+# Pushes that only touch docs/ are ignored to avoid deploy loops.
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
 
 permissions:
   contents: write
@@ -32,8 +34,10 @@ jobs:
       - name: Verify production bundle
         run: |
           grep -q 'src="/assets/' dist/index.html || (echo "dist/index.html must reference hashed /assets/ bundles" && exit 1)
-      - name: Deploy dist to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy dist to docs/ on main
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          branch: main
+          folder: dist
+          target-folder: docs
+          clean: true
