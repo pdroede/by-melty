@@ -56,6 +56,29 @@ applyStripePaymentLink();
   });
 })();
 
+/** Scroll-driven video scrubbing */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var section = document.querySelector(".scroll-video");
+  var video = section && section.querySelector(".scroll-video__video");
+  if (!section || !video) return;
+
+  function onScroll() {
+    var rect = section.getBoundingClientRect();
+    var scrollable = section.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / scrollable));
+    if (video.readyState >= 1) {
+      video.currentTime = progress * video.duration;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  // Run once on load in case user is already mid-page
+  onScroll();
+})();
+
 /** Plausible: goal "CTA Click" with props.location */
 function trackClick(location) {
   if (typeof window.plausible === "function") {
