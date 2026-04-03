@@ -9,25 +9,32 @@
   --font-display: 'Lobster', cursive;
   --font-body: 'Source Sans 3', system-ui, sans-serif;
 
-  --color-chocolate-900: #1f1510;
-  --color-chocolate-800: #2d2119;
-  --color-chocolate-700: #3d2d22;
-  --color-chocolate-600: #4a382c;
-  --color-cream-100: #faf7f2;
-  --color-cream-200: #f0e6da;
-  --color-cream-300: #e5d5c4;
-  --color-melty-white: #fffcfa;
-  --color-text-on-dark: #f4e8dc;
+  /* Darker chocolate + marshmallow beige (still light, moody) */
+  --color-chocolate-950: #0f0a08;
+  --color-chocolate-900: #1a1310;
+  --color-chocolate-850: #221a16;
+  --color-chocolate-800: #2c221c;
+  --color-chocolate-700: #3a2f28;
+  --color-chocolate-600: #4a3d35;
+  --color-marshmallow: #f3e8dc;
+  --color-marshmallow-muted: #e6d9cc;
+  --color-marshmallow-deep: #d4c4b6;
+  --color-cream-100: #f3e8dc;
+  --color-cream-200: #e0d2c6;
+  --color-cream-300: #c9b8a8;
+  --color-melty-white: #faf5ef;
+  --color-text-on-dark: #efe4d9;
+  /* Seamless with product video: light warm grey (no dark band above the clip) */
+  --color-mug-gallery-bg: #ebe8e5;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    @apply font-sans;
   }
 
   body {
-    @apply m-0 min-h-svh font-body antialiased bg-background text-foreground;
+    @apply m-0 min-h-svh bg-background font-body text-foreground antialiased;
   }
   * {
     @apply border-border outline-ring/50;
@@ -78,14 +85,15 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Warm paper — darker than before, still light */
+  --background: oklch(0.93 0.018 55);
+  --foreground: oklch(0.22 0.035 48);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.28 0.045 48);
+  --primary-foreground: oklch(0.96 0.02 75);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -110,6 +118,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Parallax layer bases (GSAP yPercent) */
+.parallax__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .dark {
