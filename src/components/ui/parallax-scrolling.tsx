@@ -84,40 +84,57 @@ export function ParallaxScrolling({
     const root = rootRef.current
     if (!root) return
 
+    const desktopLayers = [
+      { layer: '1', yPercent: 70 },
+      { layer: '2', yPercent: 55 },
+      { layer: '3', yPercent: 40 },
+      { layer: '4', yPercent: 10 },
+    ]
+    const mobileLayers = [
+      { layer: '1', yPercent: 38 },
+      { layer: '2', yPercent: 30 },
+      { layer: '3', yPercent: 22 },
+      { layer: '4', yPercent: 6 },
+    ]
+
+    let mm: ReturnType<typeof gsap.matchMedia> | null = null
+
     const ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger)
 
       const triggerElement = root.querySelector<HTMLElement>('[data-parallax-layers]')
       if (!triggerElement) return
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: triggerElement,
-          start: '0% 0%',
-          end: '100% 0%',
-          scrub: 0,
-        },
-      })
-
-      const layers = [
-        { layer: '1', yPercent: 70 },
-        { layer: '2', yPercent: 55 },
-        { layer: '3', yPercent: 40 },
-        { layer: '4', yPercent: 10 },
-      ]
-
-      layers.forEach((layerObj, idx) => {
-        const targets = triggerElement.querySelectorAll(
-          `[data-parallax-layer="${layerObj.layer}"]`,
-        )
-        tl.to(
-          targets,
-          {
-            yPercent: layerObj.yPercent,
-            ease: 'none',
+      const build = (layers: typeof desktopLayers) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: triggerElement,
+            start: '0% 0%',
+            end: '100% 0%',
+            scrub: 0,
           },
-          idx === 0 ? undefined : '<',
-        )
+        })
+        layers.forEach((layerObj, idx) => {
+          const targets = triggerElement.querySelectorAll(
+            `[data-parallax-layer="${layerObj.layer}"]`,
+          )
+          tl.to(
+            targets,
+            {
+              yPercent: layerObj.yPercent,
+              ease: 'none',
+            },
+            idx === 0 ? undefined : '<',
+          )
+        })
+      }
+
+      mm = gsap.matchMedia()
+      mm.add('(max-width: 767px)', () => {
+        build(mobileLayers)
+      })
+      mm.add('(min-width: 768px)', () => {
+        build(desktopLayers)
       })
     }, root)
 
@@ -126,6 +143,7 @@ export function ParallaxScrolling({
 
     return () => {
       window.removeEventListener('resize', onResize)
+      mm?.revert()
       ctx.revert()
     }
   }, [])
@@ -134,7 +152,7 @@ export function ParallaxScrolling({
 
   return (
     <div ref={rootRef} className={cn('parallax w-full', className)}>
-      <section className="parallax__header relative min-h-[160vh]">
+      <section className="parallax__header relative min-h-[125vh] md:min-h-[160vh]">
         <div className="parallax__visuals sticky top-0 h-svh w-full overflow-hidden">
           <div className="parallax__black-line-overflow pointer-events-none absolute inset-x-0 top-0 z-10 h-1 bg-chocolate-900" />
           <div
@@ -173,10 +191,10 @@ export function ParallaxScrolling({
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-marshmallow/90">
                 Fondue mug
               </p>
-              <h2 className="font-display text-5xl text-marshmallow drop-shadow-lg sm:text-6xl md:text-7xl">
+              <h2 className="font-display text-4xl text-marshmallow drop-shadow-lg sm:text-6xl md:text-7xl">
                 {headline}
               </h2>
-              <p className="mt-4 max-w-md text-lg text-marshmallow-muted">{subheadline}</p>
+              <p className="mt-4 max-w-md px-1 text-base text-marshmallow-muted sm:text-lg">{subheadline}</p>
             </div>
 
             <div data-parallax-layer="4" className="parallax__layer will-change-transform absolute inset-0">

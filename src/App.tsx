@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
+import { SiteHeader } from '@/components/site-header'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 import { PlausibleAnalytics } from '@/components/plausible-analytics'
 import { BuyButton3D } from '@/components/ui/buy-button-3d'
@@ -11,7 +11,6 @@ import { ParallaxScrolling } from '@/components/ui/parallax-scrolling'
 import { PhotoCards3D } from '@/components/ui/photo-cards-3d'
 import { ScrollParallaxSection } from '@/components/ui/scroll-parallax-section'
 import { getStripePaymentUrl } from '@/lib/stripe'
-import { cn } from '@/lib/utils'
 
 const stripeUrl = getStripePaymentUrl()
 
@@ -20,32 +19,6 @@ function trackCta(location: string) {
   if (typeof w.plausible === 'function') {
     w.plausible('CTA Click', { props: { location } })
   }
-}
-
-function BuyLink({
-  children,
-  className,
-  location,
-}: {
-  children: ReactNode
-  className?: string
-  location: string
-}) {
-  const href = stripeUrl || '#buy'
-  const valid = Boolean(stripeUrl)
-
-  return (
-    <a
-      href={href}
-      target={valid ? '_blank' : undefined}
-      rel={valid ? 'noopener noreferrer' : undefined}
-      className={className}
-      data-location={location}
-      onClick={() => trackCta(location)}
-    >
-      {children}
-    </a>
-  )
 }
 
 export default function App() {
@@ -60,37 +33,7 @@ export default function App() {
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-50 border-b border-black/[0.06] bg-melty-white/75 backdrop-blur-xl supports-[backdrop-filter]:bg-melty-white/65">
-        <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <a href="#" className="font-display text-2xl text-chocolate-900">
-            ByMelty
-          </a>
-          <div className="flex flex-wrap items-center justify-end gap-3 sm:gap-4">
-            <nav className="flex items-center gap-3 text-sm font-semibold text-chocolate-700 sm:gap-5">
-              <a href="#features-intro" className="transition hover:text-chocolate-900">
-                Discover
-              </a>
-              <a href="#how-it-works" className="transition hover:text-chocolate-900">
-                How it works
-              </a>
-              <a href="#ready" className="transition hover:text-chocolate-900">
-                Ready
-              </a>
-              <a href="#gallery-3d" className="transition hover:text-chocolate-900">
-                Gallery
-              </a>
-            </nav>
-            <BuyLink
-              location="header-buy"
-              className={cn(
-                'rounded-full bg-marshmallow px-5 py-3 text-sm font-semibold text-chocolate-900 shadow-md transition hover:bg-melty-white sm:px-6 sm:py-4',
-              )}
-            >
-              Buy now
-            </BuyLink>
-          </div>
-        </div>
-      </header>
+      <SiteHeader stripeUrl={stripeUrl} onBuyClick={() => trackCta('header-buy')} />
 
       <main id="content">
         <ParallaxScrolling videoClip={{ startSec: 0, endSec: 6 }} />
@@ -241,7 +184,7 @@ export default function App() {
         </ScrollParallaxSection>
       </main>
 
-      <footer className="border-t border-black/[0.06] bg-melty-white px-4 py-12 text-center text-sm text-chocolate-700 sm:px-6">
+      <footer className="border-t border-black/[0.06] bg-melty-white px-4 pt-12 pb-[max(3rem,env(safe-area-inset-bottom))] text-center text-sm text-chocolate-700 sm:px-6">
         <p className="font-display text-xl text-chocolate-900">ByMelty</p>
         <p className="mt-2">
           &copy; {new Date().getFullYear()} ByMelty. All rights reserved.

@@ -5,39 +5,61 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { type ReactNode, useEffect } from 'react'
 
+const MOBILE_QUERY = '(max-width: 767px)'
+
 /**
- * Lenis + GSAP ScrollTrigger on the whole document so hero parallax and
- * section scroll effects share one smooth scroll — not a fixed/static feel.
+ * Lenis + GSAP ScrollTrigger on desktop. On small viewports we use native
+ * scroll — Lenis + iOS often causes jank, rubber-banding fights, and stuck scroll.
  */
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.2,
-    })
+    const mq = window.matchMedia(MOBILE_QUERY)
+    let lenis: Lenis | null = null
+    let onTick: ((time: number) => void) | null = null
 
-    lenis.on('scroll', ScrollTrigger.update)
-
-    const onTick = (time: number) => {
-      lenis.raf(time * 1000)
+    const startLenis = () => {
+      lenis = new Lenis({
+        duration: 1.12,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1,
+        syncTouch: false,
+      })
+      lenis.on('scroll', ScrollTrigger.update)
+      onTick = (time: number) => {
+        lenis?.raf(time * 1000)
+      }
+      gsap.ticker.add(onTick)
+      gsap.ticker.lagSmoothing(0)
     }
-    gsap.ticker.add(onTick)
-    gsap.ticker.lagSmoothing(0)
 
-    const onResize = () => {
-      ScrollTrigger.refresh()
+    const stopLenis = () => {
+      if (onTick) {
+        gsap.ticker.remove(onTick)
+        onTick = null
+      }
+      lenis?.destroy()
+      lenis = null
     }
+
+    const apply = () => {
+      stopLenis()
+      if (!mq.matches) startLenis()
+      requestAnimationFrame(() => ScrollTrigger.refresh())
+    }
+
+    apply()
+    mq.addEventListener('change', apply)
+
+    const onResize = () => ScrollTrigger.refresh()
     window.addEventListener('resize', onResize)
-    requestAnimationFrame(() => ScrollTrigger.refresh())
 
     return () => {
+      mq.removeEventListener('change', apply)
       window.removeEventListener('resize', onResize)
-      gsap.ticker.remove(onTick)
-      lenis.destroy()
+      stopLenis()
     }
   }, [])
 

@@ -29,24 +29,20 @@ export function ContainerScroll({ titleComponent, children, className }: Contain
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const scaleDimensions = (): [number, number] => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1]
-  }
-
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions())
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const rotate = useTransform(scrollYProgress, [0, 1], [isMobile ? 10 : 20, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], isMobile ? [0.78, 0.95] : [1.05, 1])
+  const translate = useTransform(scrollYProgress, [0, 1], [0, isMobile ? -40 : -100])
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        'relative flex h-[60rem] items-center justify-center p-2 md:h-[80rem] md:p-20',
+        'relative flex h-[min(36rem,92svh)] min-h-[28rem] items-center justify-center p-2 sm:h-[48rem] md:h-[60rem] md:p-12 lg:h-[80rem] lg:p-20',
         className,
       )}
     >
       <div
-        className="relative w-full py-10 md:py-40"
+        className="relative w-full py-6 sm:py-10 md:py-40"
         style={{ perspective: '1000px' }}
       >
         <ScrollHeader translate={translate} titleComponent={titleComponent} />
@@ -89,7 +85,7 @@ function ScrollCard({
         boxShadow:
           '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
       }}
-      className="mx-auto -mt-12 h-[30rem] w-full max-w-5xl rounded-[30px] border border-black/10 bg-white p-2 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.12)] md:h-[40rem] md:p-6"
+      className="mx-auto -mt-8 h-[min(22rem,55svh)] w-full max-w-5xl rounded-[20px] border border-black/10 bg-white p-2 shadow-[0_24px_80px_-20px_rgba(0,0,0,0.12)] sm:-mt-12 sm:h-[30rem] sm:rounded-[30px] md:h-[40rem] md:p-6"
     >
       <div className="h-full w-full overflow-hidden rounded-2xl bg-marshmallow/40 md:rounded-2xl md:p-4">
         {children}

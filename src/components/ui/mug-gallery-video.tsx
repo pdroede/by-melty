@@ -10,9 +10,8 @@ export type MugGalleryVideoProps = {
   className?: string
   /** Optional loop window; omit to loop the full file */
   videoClip?: { startSec: number; endSec: number }
-  /** Min height for the video area */
-  minHeight?: string
 }
+
 
 /**
  * Full-bleed mug clip — no rounded frame, no WebGL. Use with a section background
@@ -22,7 +21,6 @@ export function MugGalleryVideo({
   src,
   className,
   videoClip,
-  minHeight = 'min(58vh, 560px)',
 }: MugGalleryVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -38,8 +36,7 @@ export function MugGalleryVideo({
     <div className={cn('relative w-full', className)}>
       <video
         ref={videoRef}
-        className="block w-full object-cover"
-        style={{ minHeight }}
+        className="block min-h-[min(44vh,380px)] w-full object-cover sm:min-h-[min(52vh,480px)] md:min-h-[min(58vh,560px)]"
         src={src}
         muted
         playsInline

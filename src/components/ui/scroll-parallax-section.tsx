@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { type ReactNode, useRef } from 'react'
 
 import { cn } from '@/lib/utils'
@@ -28,12 +28,14 @@ export function ScrollParallaxSection({
   parallaxRange = 56,
 }: ScrollParallaxSectionProps) {
   const ref = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   })
 
-  const bgY = useTransform(scrollYProgress, [0, 1], [parallaxRange, -parallaxRange])
+  const range = reduceMotion ? 0 : parallaxRange
+  const bgY = useTransform(scrollYProgress, [0, 1], [range, -range])
 
   return (
     <section ref={ref} id={id} className={cn('relative overflow-hidden', className)}>

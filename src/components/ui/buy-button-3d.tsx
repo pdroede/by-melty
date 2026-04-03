@@ -37,15 +37,15 @@ export function BuyButton3D({
   )
 
   const base = cn(
-    'group relative inline-flex select-none rounded-2xl text-lg font-bold tracking-tight',
-    'text-marshmallow shadow-lg transition-colors',
+    'group relative inline-flex min-h-12 min-w-[min(100%,17.5rem)] select-none rounded-2xl text-base font-bold tracking-tight sm:min-h-14 sm:text-lg',
+    'touch-manipulation text-marshmallow shadow-lg transition-colors',
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-marshmallow/60',
     disabled && 'pointer-events-none opacity-50',
     className,
   )
 
   const face = (
-    <span className="relative z-[1] block rounded-2xl border border-chocolate-700/50 bg-gradient-to-b from-chocolate-600 to-chocolate-800 px-10 py-4 group-hover:from-chocolate-500 group-hover:to-chocolate-700">
+    <span className="relative z-[1] block rounded-2xl border border-chocolate-700/50 bg-gradient-to-b from-chocolate-600 to-chocolate-800 px-6 py-3.5 group-hover:from-chocolate-500 group-hover:to-chocolate-700 sm:px-10 sm:py-4">
       {inner}
     </span>
   )
