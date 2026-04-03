@@ -27,6 +27,10 @@ jobs:
         run: npm run build
         env:
           VITE_STRIPE_PAYMENT_LINK: ${{ secrets.VITE_STRIPE_PAYMENT_LINK }}
+      # Fail fast if dist is not a Vite production bundle (avoids serving raw index.html with /src/main.tsx)
+      - name: Verify production bundle
+        run: |
+          grep -q 'src="/assets/' dist/index.html || (echo "dist/index.html must reference hashed /assets/ bundles" && exit 1)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
