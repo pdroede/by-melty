@@ -1,24 +1,27 @@
 name: Deploy to GitHub Pages
 
-# Builds Vite and pushes ./dist into ./docs on main (JamesIves).
-# In Settings → Pages: Source "Deploy from branch", Branch main, Folder /docs (not /root).
-# Pushes that only touch docs/ are ignored to avoid deploy loops.
+# Official GitHub Pages flow: build → upload artifact → deploy-pages.
+# No git push to main (avoids token / branch protection issues).
+#
+# After this workflow is green, set: Repo Settings → Pages → Build and deployment
+# → Source: GitHub Actions (not "Deploy from a branch").
 
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'docs/**'
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,10 +37,16 @@ jobs:
       - name: Verify production bundle
         run: |
           grep -q 'src="/assets/' dist/index.html || (echo "dist/index.html must reference hashed /assets/ bundles" && exit 1)
-      - name: Deploy dist to docs/ on main
-        uses: JamesIves/github-pages-deploy-action@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          branch: main
-          folder: dist
-          target-folder: docs
-          clean: true
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
