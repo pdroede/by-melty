@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { type ReactNode, useRef } from 'react'
+import { type ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -9,45 +8,24 @@ export type ScrollParallaxSectionProps = {
   id?: string
   children: ReactNode
   className?: string
-  /** Moving layer behind content — include bg / gradient Tailwind classes */
   backgroundClassName?: string
-  /**
-   * Vertical parallax range in px — background drifts with scroll through the section.
-   */
   parallaxRange?: number
 }
 
 /**
- * Section whose background layer shifts with scroll progress (not a static slab).
+ * Section wrapper. The background parallax was removed — it ran a Framer Motion
+ * useScroll + useTransform on every scroll tick for every section, causing jank.
+ * Sections now use a clean static background.
  */
 export function ScrollParallaxSection({
   id,
   children,
   className,
   backgroundClassName = 'bg-marshmallow',
-  parallaxRange = 56,
 }: ScrollParallaxSectionProps) {
-  const ref = useRef<HTMLElement>(null)
-  const reduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  })
-
-  const range = reduceMotion ? 0 : parallaxRange
-  const bgY = useTransform(scrollYProgress, [0, 1], [range, -range])
-
   return (
-    <section ref={ref} id={id} className={cn('relative overflow-hidden', className)}>
-      <motion.div
-        aria-hidden
-        className={cn(
-          'pointer-events-none absolute inset-0 -z-10 scale-[1.12] will-change-transform',
-          backgroundClassName,
-        )}
-        style={{ y: bgY }}
-      />
-      <div className="relative z-[1]">{children}</div>
+    <section id={id} className={cn('relative overflow-hidden', backgroundClassName, className)}>
+      {children}
     </section>
   )
 }

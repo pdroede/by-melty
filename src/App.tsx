@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { SiteHeader } from '@/components/site-header'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 import { PlausibleAnalytics } from '@/components/plausible-analytics'
+import { MagneticCursor } from '@/components/cursor'
+import { ScrollProgress } from '@/components/scroll-progress'
 import { BuyButton3D } from '@/components/ui/buy-button-3d'
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
 import { MugGalleryVideo } from '@/components/ui/mug-gallery-video'
@@ -26,6 +28,8 @@ export default function App() {
     <SmoothScrollProvider>
     <>
       <PlausibleAnalytics />
+      <MagneticCursor />
+      <ScrollProgress />
       <a
         href="#content"
         className="focus:bg-marshmallow focus:text-chocolate-900 sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:px-3 focus:py-2"

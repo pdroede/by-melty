@@ -152,7 +152,7 @@ export function ParallaxScrollFeatureSection({
     <div className={cn(className)}>
       <div
         id="features-intro"
-        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 text-center"
+        className="grain relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 text-center"
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
